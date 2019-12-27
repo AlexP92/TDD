@@ -27,11 +27,14 @@ class VisitorTest(unittest.TestCase):
         table=self.browser.find_element_by_id('list_table')
         rows=table.find_elements_by_tag_name('tr')
 
-        self.assertIn("1: Buy peacock",[row.text for row in rows])
-        inputbox = self.browser.find_element_by_id("add_new_item")
-        inputbox.send_keys("Fly peacock")
-        inputbox.send_keys(Keys.ENTER)
-        self.assertIn("1: Buy peacock", [row.text for row in rows])
+        self.assertTrue(
+            any(row.text == '1: Buy peacock' for row in rows),
+            "New to-do item did not appear in table"
+        )
+        # inputbox = self.browser.find_element_by_id("add_new_item")
+        # inputbox.send_keys("Fly peacock")
+        # inputbox.send_keys(Keys.ENTER)
+        # self.assertIn("1: Buy peacock", [row.text for row in rows])
         self.fail('finish')
 
 if __name__=="__main__":
