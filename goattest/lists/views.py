@@ -3,4 +3,7 @@ from django.http import HttpResponse
 
 
 def home_page(request):
-    return render(request,'home.html')
+    if request.method=='POST':
+        return HttpResponse(request.POST['item_text'])
+    else:
+        return render(request,'home.html')
